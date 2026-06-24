@@ -52,13 +52,16 @@ export default function FeelingCheckFlow() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    await supabase.from("check_ins").insert({
-      user_id: user.id, mood, intensity,
-      triggers: [...triggers], needs: [...needs],
-      journal, translation, sent_to_partner: true,
-    });
-    setSent(true);
-  }
+  await supabase.from("check_ins").insert({
+    user_id: user.id,
+    mood,
+    intensity,
+    triggers: Array.from(triggers),
+    needs: Array.from(needs),
+    journal,
+    translation,
+    sent_to_partner: true,
+  });
 
   async function copyTranslation() {
     await navigator.clipboard.writeText(translation);
