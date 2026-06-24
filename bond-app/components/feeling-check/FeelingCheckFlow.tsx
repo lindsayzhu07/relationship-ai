@@ -35,8 +35,7 @@ export default function FeelingCheckFlow() {
       const res = await fetch("/api/feeling-check", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({mood,intensity,triggers: Array.from(triggers),needs: Array.from(needs), journal
-}),
+        body: JSON.stringify({mood,intensity,triggers: Array.from(triggers),needs: Array.from(needs), journal}),
       const data = await res.json();
       setTranslation(data.translation);
       setInsight(data.insight);
